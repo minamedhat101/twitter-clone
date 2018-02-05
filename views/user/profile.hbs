@@ -1,0 +1,77 @@
+<div class="container col-md-6">
+  <h2 class="text-center">{{foundUser.name}}</h2>
+  <div>
+    <a href="http://trovacamporall.com">
+      <img class="img-responsive profile-pic" src="{{foundUser.photo}}" alt="">
+    </a>
+    {{#if currentUser }} 
+    {{else}}
+    <div class="row">
+      <input type="hidden" id="user_id" value="{{foundUser._id}}"> 
+      {{#if followers}}
+      <button class="btn btn-default tweet-button profile-pic" id="unfollow">Following</button>
+
+      {{else}}
+      <button class="btn btn-primary tweet-button profile-pic" id="follow">Follow</button>
+    {{/if}} 
+      </div>
+    {{/if}}
+
+  </div>
+  <ul class="nav nav-tabs" role="tablist">
+    <li class="nav-item">
+      <a class="nav-link active" data-toggle="tab" href="#tweets" role="tab">Tweets</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#followers" role="tab">Followers</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" data-toggle="tab" href="#following" role="tab">Following</a>
+    </li>
+  </ul>
+
+  <div class="tab-content">
+    <div class="tab-pane fade show active" id="tweets" role="tabpanel">
+      {{#each tweets}}
+      <div id="tweets" class="row tweet">
+        <div class="col-sm-2">
+          <a href="/user/{{owner.id}}">
+            <img class="img-responsive" src="{{owner.photo}}" alt="">
+          </a>
+        </div>
+        <div class="col-sm-10">
+          <a href="/account/profile/{{owner.id}}">{{owner.name}}</a>
+          <p class="tweet-content">{{content}}</p>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="tab-pane fade" id="followers" role="tabpanel">
+      {{#each foundUser.follower}}
+      <div id="tweets" class="row tweet">
+        <div class="col-sm-2">
+          <a href="/account/profile/{{id}}">
+            <img class="img-responsive" src="{{photo}}" alt="">
+          </a>
+        </div>
+        <div class="col-sm-10">
+          <a href="/user/{{id}}">{{name}}</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+    <div class="tab-pane fade" id="following" role="tabpanel">
+      {{#each foundUser.following}}
+      <div id="tweets" class="row tweet">
+        <div class="col-sm-2">
+          <a href="/user/{{id}}">
+            <img class="img-responsive" src="{{photo}}" alt="">
+          </a>
+        </div>
+        <div class="col-sm-10">
+          <a href="/user/{{id}}">{{name}}</a>
+        </div>
+      </div>
+      {{/each}}
+    </div>
+  </div>

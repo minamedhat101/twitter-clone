@@ -1,0 +1,31 @@
+<div class="container col-md-6">
+  <div class="row">
+    <div class="col-sm-2">
+      <a href="/user/{{user.id}}">
+        <img class="ratio img-responsive img-circle" src="{{user.photo}}" alt="">
+      </a>
+    </div>
+    <div class="col-sm-10">
+      <form id="sendTweet">
+        <div class="form-group">
+          <textarea type="textarea" class="form-control" id="tweet" placeholder="What is happening?"></textarea>
+        </div>
+        <button class="btn btn-primary tweet-button">Tweet</button>
+      </form>
+    </div>
+  </div>
+
+  <br>
+  <br>
+  {{#each tweets}}
+  <div id="tweets" class="row tweet">
+    <div class="col-sm-2">
+      <a href="/user/{{owner.id}}"><img class="img-responsive" src="{{owner.photo}}" alt=""></a>
+    </div>
+    <div class="col-sm-10">
+      <a href="/user/{{owner.id}}">{{owner.name}}</a>
+      <p class="tweet-content">{{content}}</p>
+    </div>
+  </div>
+  {{/each}}
+</div>
